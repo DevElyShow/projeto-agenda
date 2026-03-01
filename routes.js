@@ -12,6 +12,8 @@ route.post('/', homeController.trataPost);
 // Contato
 route.get('/contato', contatoController.index);
 route.post('/contato/register', contatoController.register);
+route.get('/contato/:id', contatoController.editIndex);
+route.post('/contato/edit/:id', contatoController.edit);
 route.get('/contato/delete/:id', contatoController.delete);
 
 // Login e Cadastro
