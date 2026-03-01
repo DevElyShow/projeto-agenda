@@ -1,6 +1,17 @@
 const Contato = require('../models/ContatoModel');
 
-exports.index = async(req, res) => {
-  const contatos = await Contato.buscaContatos();
-  res.render('index', { contatos });
+// Página inicial
+exports.index = async (req, res) => {
+  try {
+    const contatos = await Contato.buscaContatos();
+    res.render('index', { contatos });
+  } catch (e) {
+    console.log(e);
+    res.render('404');
+  }
+};
+
+// Tratamento de POST
+exports.trataPost = (req, res) => {
+  res.send('Formulário recebido com sucesso 🚀');
 };
