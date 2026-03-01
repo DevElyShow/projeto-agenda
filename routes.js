@@ -5,20 +5,19 @@ const homeController = require('./src/controllers/homeController');
 const contatoController = require('./src/controllers/contatoController');
 const loginController = require('./src/controllers/loginController');
 
-// Home
+// Rotas da Home
 route.get('/', homeController.index);
 route.post('/', homeController.trataPost);
 
 // Contato
 route.get('/contato', contatoController.index);
+route.post('/contato/register', contatoController.register);
+route.get('/contato/delete/:id', contatoController.delete);
 
-// Página login/cadastro
+// Login e Cadastro
 route.get('/login', loginController.index);
-
-// Cadastro
 route.post('/login/register', loginController.register);
-
-// Login
 route.post('/login/login', loginController.login);
+route.get('/login/logout', loginController.logout);
 
 module.exports = route;

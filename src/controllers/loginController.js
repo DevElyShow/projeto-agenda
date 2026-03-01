@@ -57,14 +57,7 @@ exports.logout = function(req, res) {
   res.redirect('/');
 };
 
-exports.index = (req, res) => {
-  res.render('login');
-};
-
-exports.register = (req, res) => {
-  res.send('Usuário cadastrado 🚀');
-};
-
-exports.login = (req, res) => {
-  res.send('Usuário logado 🚀');
+exports.logout = function(req, res) {
+  req.session.destroy();
+  res.redirect('/');
 };
