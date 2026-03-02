@@ -15,10 +15,3 @@ exports.index = async (req, res) => {
 exports.trataPost = (req, res) => {
   res.send('Formulário recebido com sucesso 🚀');
 };
-
-// Pagina inicial nova 
-exports.home = (req, res) => {
-  res.render('home', {
-    user: req.session.user
-  });
-};
