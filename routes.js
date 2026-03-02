@@ -5,16 +5,18 @@ const homeController = require('./src/controllers/homeController');
 const contatoController = require('./src/controllers/contatoController');
 const loginController = require('./src/controllers/loginController');
 
+const loginRequired = require('./src/middlewares/loginRequired');
+
 // Rotas da Home
 route.get('/', homeController.index);
 route.post('/', homeController.trataPost);
 
-// Contato
-route.get('/contato', contatoController.index);
-route.post('/contato/register', contatoController.register);
-route.get('/contato/:id', contatoController.editIndex);
-route.post('/contato/edit/:id', contatoController.edit);
-route.get('/contato/delete/:id', contatoController.delete);
+// Contato (AGORA PROTEGIDO)
+route.get('/contato', loginRequired, contatoController.index);
+route.post('/contato/register', loginRequired, contatoController.register);
+route.get('/contato/:id', loginRequired, contatoController.editIndex);
+route.post('/contato/edit/:id', loginRequired, contatoController.edit);
+route.get('/contato/delete/:id', loginRequired, contatoController.delete);
 
 // Login e Cadastro
 route.get('/login', loginController.index);
