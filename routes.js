@@ -10,6 +10,7 @@ const loginRequired = require('./src/middlewares/loginRequired');
 // Rotas da Home
 route.get('/', homeController.index);
 route.post('/', homeController.trataPost);
+route.get('/', homeController.home);
 
 // Contato (AGORA PROTEGIDO)
 route.get('/contato', loginRequired, contatoController.index);
