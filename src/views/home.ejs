@@ -1,0 +1,21 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container text-center mt-5">
+  <h1 class="display-4">📒 Bem-vindo à Agenda</h1>
+  <p class="lead mt-3">
+    Organize seus contatos de forma simples e segura.
+  </p>
+
+  <% if (!user) { %>
+    <a href="/login" class="btn btn-primary btn-lg mt-3">
+      Entrar ou Criar Conta
+    </a>
+  <% } else { %>
+    <a href="/contato" class="btn btn-success btn-lg mt-3">
+      Ir para meus contatos
+    </a>
+  <% } %>
+</div>
+
+<%- include('includes/footer') %>
