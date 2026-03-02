@@ -33,10 +33,38 @@
           <label>Telefone</label>
           <input value="<%= contato.telefone %>" type="tel" class="form-control" name="telefone">
         </div>
+        <div class="form-group">
+  <label>CEP</label>
+  <input value="<%= contato.cep %>" type="text" class="form-control" name="cep" id="cep">
+</div>
+
+<div class="form-group">
+  <label>Rua</label>
+  <input value="<%= contato.rua %>" type="text" class="form-control" name="rua" id="rua">
+</div>
+
+<div class="form-group">
+  <label>Número</label>
+  <input value="<%= contato.numero %>" type="text" class="form-control" name="numero">
+</div>
+
+<div class="form-group">
+  <label>Bairro</label>
+  <input value="<%= contato.bairro %>" type="text" class="form-control" name="bairro" id="bairro">
+</div>
+
+<div class="form-group">
+  <label>Tags (separadas por vírgula)</label>
+  <input 
+    type="text" 
+    name="tags"
+    class="form-control"
+    value="<%= contato.tags ? contato.tags.join(', ') : '' %>"
+    placeholder="ex: família, trabalho, amigos"
+  >
+</div>
         <button type="submit" class="btn btn-primary">Salvar</button>
       </form>
-
-
     </div>
     
     <div class="col-lg-2"></div>

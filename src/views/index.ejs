@@ -11,6 +11,19 @@
         <h1 class="text-center mb-2">📒 Agenda</h1>
         <p class="text-center text-muted">Seus contatos estão abaixo</p>
 
+        <form method="GET" action="/dashboard" class="mt-3">
+        <div class="input-group">
+       <input 
+        type="text" 
+        name="busca" 
+        class="form-control" 
+        placeholder="🔎 Buscar contato pelo nome..."
+        value="<%= typeof busca !== 'undefined' ? busca : '' %>"
+       >
+    <button class="btn btn-dark" type="submit">Buscar</button>
+  </div>
+</form>
+
         <%- include('includes/messages') %>
 
         <% if(contatos.length > 0) { %>
@@ -53,11 +66,28 @@
           </table>
         </div>
 
-        <div class="text-end mt-3">
-          <a href="/contato" class="btn btn-success">
-            ➕ Novo Contato
-          </a>
-        </div>
+       <!-- PAGINAÇÃO AQUI -->
+<% if (totalPages > 1) { %>
+<nav class="mt-4">
+  <ul class="pagination justify-content-center">
+
+    <% for(let i = 1; i <= totalPages; i++) { %>
+      <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+        <a class="page-link" href="/dashboard?page=<%= i %>&busca=<%= busca %>">
+          <%= i %>
+        </a>
+      </li>
+    <% } %>
+
+  </ul>
+</nav>
+<% } %>
+
+<div class="text-end mt-3">
+  <a href="/contato" class="btn btn-success">
+    ➕ Novo Contato
+  </a>
+</div>
 
         <% } else { %>
 
