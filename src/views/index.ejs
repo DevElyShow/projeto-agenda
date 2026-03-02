@@ -5,30 +5,72 @@
   <div class="row">
     <div class="col-lg-2"></div>
 
-    <div class="col-lg-8 my-3">
-      <h1 class="text-center">Agenda</h1>
-      <p class="text-center lead">Seus contatos estão abaixo</p>
+    <div class="col-lg-8 my-5">
 
-      <%- include('includes/messages') %>
+      <div class="card shadow p-4">
+        <h1 class="text-center mb-2">📒 Agenda</h1>
+        <p class="text-center text-muted">Seus contatos estão abaixo</p>
 
-      <% if(contatos.length > 0) { %>
-      <div class="responsive-table">
-        <table class="table my-3">
-          <% contatos.forEach(contato => { %>
-          <tr>
-            <td><%= contato.nome %></td>
-            <td><%= contato.sobrenome %></td>
-            <td><%= contato.telefone %></td>
-            <td><%= contato.email %></td>
-            <td><a href="/contato/<%= contato._id %>">Editar</a></td>
-            <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
-          </tr>
-          <% }); %>
-        </table>
+        <%- include('includes/messages') %>
+
+        <% if(contatos.length > 0) { %>
+
+        <div class="table-responsive mt-4">
+          <table class="table table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th class="text-center">Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% contatos.forEach(contato => { %>
+              <tr>
+                <td><%= contato.nome %></td>
+                <td><%= contato.sobrenome %></td>
+                <td><%= contato.telefone %></td>
+                <td><%= contato.email %></td>
+                <td class="text-center">
+                  <a class="btn btn-warning btn-sm"
+                     href="/contato/<%= contato._id %>">
+                     Editar
+                  </a>
+
+                  <a class="btn btn-danger btn-sm"
+                     href="/contato/delete/<%= contato._id %>"
+                     onclick="return confirm('Tem certeza que deseja excluir este contato?')">
+                     Excluir
+                  </a>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+
+          </table>
+        </div>
+
+        <div class="text-end mt-3">
+          <a href="/contato" class="btn btn-success">
+            ➕ Novo Contato
+          </a>
+        </div>
+
+        <% } else { %>
+
+        <div class="text-center mt-4">
+          <h5 class="mb-3">Sua agenda está vazia 📭</h5>
+          <a href="/contato" class="btn btn-primary btn-lg">
+            ➕ Adicionar Primeiro Contato
+          </a>
+        </div>
+
+        <% } %>
+
       </div>
-      <% } else { %>
-        <p class="text-center lead">Não existem contatos na sua agenda.</p>
-      <% } %>
 
     </div>
     
