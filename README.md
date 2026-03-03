@@ -59,6 +59,5 @@ Bash
 npm start
 Acesse no navegador: http://localhost:3000
 
-👨‍💻 Desenvolvedor
-Desenvolvido por Elydeivison Cesar.
+👨‍💻 Desenvolvido por Elydeivison Cesar.
 Focado em aprender cada vez mais sobre o ecossistema JavaScript!
