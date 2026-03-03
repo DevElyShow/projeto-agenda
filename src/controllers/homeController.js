@@ -1,29 +1,59 @@
-const Contato = require('../models/ContatoModel');
+const { ContatoModel } = require('../models/ContatoModel');
 
-// Landing Page
+
+// ==============================
+// LANDING PAGE
+// ==============================
 exports.landing = (req, res) => {
   if (req.session.user) return res.redirect('/dashboard');
   res.render('landing');
 };
 
-// Dashboard (lista contatos)
+
+// ==============================
+// DASHBOARD (LISTA CONTATOS)
+// ==============================
 exports.dashboard = async (req, res) => {
   try {
     const busca = req.query.busca || '';
+    const page = Number(req.query.page) || 1;
+    const limit = 5;
+    const skip = (page - 1) * limit;
 
-    const contatos = await Contato.buscaContatos(
-      req.session.user._id,
-      busca
-    );
+    const filtro = {
+      user: req.session.user._id
+    };
 
-    res.render('index', { contatos, busca });
+    if (busca) {
+      filtro.nome = { $regex: busca, $options: 'i' };
+    }
+
+    const contatos = await ContatoModel.find(filtro)
+      .limit(limit)
+      .skip(skip)
+      .sort({ criadoEm: -1 });
+
+    const total = await ContatoModel.countDocuments(filtro);
+    const totalPages = Math.ceil(total / limit);
+
+    res.render('index', {
+      contatos,
+      busca,
+      currentPage: page,
+      totalPages,
+      user: req.session.user
+    });
+
   } catch (e) {
     console.log(e);
-    res.render('404');
+    return res.render('404');
   }
 };
 
-// Tratamento de POST
+
+// ==============================
+// TRATAMENTO DE POST (SE USAR)
+// ==============================
 exports.trataPost = (req, res) => {
   res.send('Formulário recebido com sucesso 🚀');
 };
