@@ -1,9 +1,8 @@
 const { Contato, ContatoModel } = require('../models/ContatoModel');
 
 
-// ============================
-// LISTAR CONTATOS (COM PAGINAÇÃO E BUSCA)
-// ============================
+// LISTAR CONTATOS 
+
 exports.index = async function(req, res) {
   try {
     const busca = req.query.busca || '';
@@ -42,9 +41,8 @@ exports.index = async function(req, res) {
 };
 
 
-// ============================
 // ABRIR FORMULÁRIO DE CADASTRO
-// ============================
+
 exports.cadastro = function(req, res) {
   res.render('contato', {
     contato: {},
@@ -53,9 +51,9 @@ exports.cadastro = function(req, res) {
 };
 
 
-// ============================
+
 // REGISTRAR CONTATO
-// ============================
+
 exports.register = async (req, res) => {
   try {
     const contato = new Contato(req.body, req.session.user._id);
@@ -76,9 +74,9 @@ exports.register = async (req, res) => {
 };
 
 
-// ============================
+
 // ABRIR FORMULÁRIO DE EDIÇÃO
-// ============================
+
 exports.editIndex = async (req, res) => {
   try {
     if (!req.params.id) return res.render('404');
@@ -102,9 +100,9 @@ exports.editIndex = async (req, res) => {
 };
 
 
-// ============================
+
 // EDITAR CONTATO
-// ============================
+
 exports.edit = async (req, res) => {
   try {
     if (!req.params.id) return res.render('404');
@@ -127,9 +125,8 @@ exports.edit = async (req, res) => {
 };
 
 
-// ============================
 // DELETAR CONTATO
-// ============================
+
 exports.delete = async (req, res) => {
   try {
     if (!req.params.id) return res.render('404');
