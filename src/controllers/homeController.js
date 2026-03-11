@@ -1,18 +1,15 @@
 const { ContatoModel } = require('../models/ContatoModel');
 
 
-// ==============================
 // LANDING PAGE
-// ==============================
+
 exports.landing = (req, res) => {
   if (req.session.user) return res.redirect('/dashboard');
   res.render('landing');
 };
 
-
-// ==============================
 // DASHBOARD (LISTA CONTATOS)
-// ==============================
+
 exports.dashboard = async (req, res) => {
   try {
     const busca = req.query.busca || '';
@@ -51,9 +48,9 @@ exports.dashboard = async (req, res) => {
 };
 
 
-// ==============================
-// TRATAMENTO DE POST (SE USAR)
-// ==============================
+
+// TRATAMENTO DE POST 
+
 exports.trataPost = (req, res) => {
   res.send('Formulário recebido com sucesso 🚀');
 };
